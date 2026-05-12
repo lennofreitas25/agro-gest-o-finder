@@ -1,0 +1,3 @@
+UPDATE auth.users SET email_confirmed_at = now() WHERE id = '0f3dab6a-6925-434e-a620-e0159120e87a' AND email_confirmed_at IS NULL;
+UPDATE public.user_roles SET role = 'admin' WHERE user_id = '0f3dab6a-6925-434e-a620-e0159120e87a';
+INSERT INTO public.user_roles (user_id, role) SELECT '0f3dab6a-6925-434e-a620-e0159120e87a', 'admin' WHERE NOT EXISTS (SELECT 1 FROM public.user_roles WHERE user_id='0f3dab6a-6925-434e-a620-e0159120e87a' AND role='admin');
